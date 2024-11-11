@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Image, Text, View, ScrollView } from "react-native";
-import { getDataApi, postDataApi } from "../utils/fetchData";
 import { TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getBikes } from "../redux/action";
@@ -11,7 +10,7 @@ const mappingImage = {
     "../assets/bike3.png": require("../assets/bike3.png")
 };
 
-function Bike() {
+function Bike({ navigation }) {
     const dispatch = useDispatch();
     const bikeState = useSelector((state) => state);
     const bikeList = bikeState?.bikeList || [];
@@ -23,8 +22,23 @@ function Bike() {
 
     return (
         <View style={{ height: "100%", width: "100%" }}>
-            <View style={{ padding: 30 }}>
+            <View style={{ padding: 30, flexDirection: "row", justifyContent: "space-between" }}>
                 <Text style={{ fontWeight: 700, fontSize: 25, color: "red" }}>The world's Best Bike</Text>
+                <TouchableOpacity onPress={() => navigation.navigate("CreateBike")}>
+                    <Text
+                        style={{
+                            fontWeight: "bold",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderWidth: 1,
+                            borderRadius: 10,
+                            padding: 10,
+                            minWidth: 80
+                        }}
+                    >
+                        Add Bike
+                    </Text>
+                </TouchableOpacity>
             </View>
 
             <View style={{ flexDirection: "row", padding: 10, justifyContent: "space-between", color: "#333" }}>

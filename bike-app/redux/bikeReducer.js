@@ -12,6 +12,12 @@ const todoReducer = function (state = initialState, action) {
                 bikeList: [...action.payload.bikes]
             };
         }
+        case GLOBALTYPES.BIKE.ADD_BIKE: {
+            return {
+                ...state,
+                bikeList: [...action.payload.bikes, action.payload.bike]
+            };
+        }
         default:
             return state;
     }
